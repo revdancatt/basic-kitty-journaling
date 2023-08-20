@@ -10,7 +10,7 @@ const path = require('path')
 const term = require('terminal-kit').terminal
 const { Configuration, OpenAIApi } = require('openai')
 
-const gpt3Completion = async (messages, model, openai, temp = 0.5, topP = 1.0, tokens = 400, freqPen = 0.0, presPen = 0.0, stop = ['USER:', 'KITTY:']) => {
+const gptCompletion = async (messages, model, openai, temp = 0.5, topP = 1.0, tokens = 400, freqPen = 0.0, presPen = 0.0, stop = ['USER:', 'KITTY:']) => {
   const response = await openai.createChatCompletion({
     model,
     messages
@@ -96,7 +96,7 @@ const main = async () => {
 
   term.cyan('\nGrabbing some gm tweets\n')
   const openai = new OpenAIApi(new Configuration({ apiKey: dataJSON.openai.apiKey }))
-  let output = await gpt3Completion(messages, 'gpt-4', openai)
+  let output = await gptCompletion(messages, 'gpt-4', openai)
   // Check to make sure the response starts with a '[' and ends with a ']' after trimming off any spaces
   // remove everything before the first '[' and everything after the last ']'
   // eslint-disable-next-line no-useless-escape

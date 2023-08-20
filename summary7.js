@@ -9,6 +9,7 @@ const fs = require('fs')
 const path = require('path')
 const term = require('terminal-kit').terminal
 const { Configuration, OpenAIApi } = require('openai')
+const { encode } = require('gpt-3-encoder')
 
 const gptCompletion = async (messages, model, openai, temp = 0.5, topP = 1.0, tokens = 400, freqPen = 0.0, presPen = 0.0, stop = ['USER:', 'KITTY:']) => {
   const response = await openai.createChatCompletion({
@@ -83,10 +84,11 @@ const main = async () => {
     }
   )
 
-  // DEBUG: Uncomment this to see the messages that will be sent to the API
+  // DEBUG, uncomment the next line to see the messages array
   // console.log(messages)
 
-  term.cyan('Summarising questions and answers, please wait.\n')
+  const tokenCount = encode(JSON.stringify(messages)).length
+  term.cyan('Summarising questions and answers, please wait. (').yellow(`~${tokenCount} tokens`).cyan(')\n')
   const openai = new OpenAIApi(new Configuration({ apiKey: dataJSON.openai.apiKey }))
   let output = null
   // Lazy error/exception handling, you'd want to make this better!
@@ -103,7 +105,6 @@ const main = async () => {
   // to do this we'll have displayOutput, which is the output with all '# ' replaced
   // with '/n# ' and then we'll use the terminal markdown function to display it
   const displayOutput = output.replace(/# /g, '\n# ')
-  term('\n\n')
   term(displayOutput)
   term('\n\n')
   term.cyan(`Summary written to ${path.join(dataFolder, 'summary.md')}\n\n\n`)

@@ -9,6 +9,7 @@ const fs = require('fs')
 const path = require('path')
 const term = require('terminal-kit').terminal
 const { Configuration, OpenAIApi } = require('openai')
+const { encode } = require('gpt-3-encoder')
 
 const gptCompletion = async (messages, model, openai, temp = 0.5, topP = 1.0, tokens = 400, freqPen = 0.0, presPen = 0.0, stop = ['USER:', 'KITTY:']) => {
   const response = await openai.createChatCompletion({
@@ -94,7 +95,11 @@ const main = async () => {
     }
   )
 
-  term.cyan('\nGrabbing some gm tweets\n')
+  // DEBUG, uncomment the next line to see the messages array
+  // console.log(messages)
+
+  const tokenCount = encode(JSON.stringify(messages)).length
+  term.cyan('\nGrabbing some gm tweets, please wait. (').yellow(`~${tokenCount} tokens`).cyan(')\n')
   const openai = new OpenAIApi(new Configuration({ apiKey: dataJSON.openai.apiKey }))
   let output = null
   // Lazy error/exception handling, you'd want to make this better!

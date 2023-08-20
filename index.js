@@ -16,6 +16,7 @@ const fs = require('fs')
 const path = require('path')
 const term = require('terminal-kit').terminal
 const { Configuration, OpenAIApi } = require('openai')
+const { encode } = require('gpt-3-encoder')
 
 const gptCompletion = async (messages, model, openai, temp = 0.5, topP = 1.0, tokens = 400, freqPen = 0.0, presPen = 0.0, stop = ['USER:', 'KITTY:']) => {
   const response = await openai.createChatCompletion({
@@ -168,7 +169,8 @@ const main = async () => {
     // empty the questions array
     questions.length = 0
     if (escapeCounter === 0) {
-      term.cyan('Thinking of some questions to ask you.\n')
+      const tokenCount = encode(JSON.stringify(messages)).length
+      term.cyan('\nThinking of some questions to ask you, please wait. (').yellow(`~${tokenCount} tokens`).cyan(')\n')
     } else {
       term.cyan('Getting some different questions\n')
     }

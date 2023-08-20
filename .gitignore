@@ -131,3 +131,4 @@ dist
 /data/previousQuestionsAndAnswers.json
 /data/data.json
 /package-lock.json
+/data/summary.md

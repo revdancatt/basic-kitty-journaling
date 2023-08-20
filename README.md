@@ -63,7 +63,7 @@ Also this will not actually tweet the results, that an exercise left to the read
 
 # Summary7
 
-The second example of what you _could_ do is in `summary7.js`, run nwith `node summery7`.
+The second example of what you _could_ do is in `summary7.js`, run nwith `node summery7`, but like, wait for a week before you do this.
 
 This bundles up the previous seven sets of questions and answers and asks gpt to create a summary based on some hard-coded areas (adjust to taste).
 

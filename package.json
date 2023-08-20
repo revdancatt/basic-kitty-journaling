@@ -1,0 +1,32 @@
+{
+  "name": "basic-kitty-journaling",
+  "version": "1.0.0",
+  "description": "An example of Kitty AI journaling",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://revdancatt@github.com/revdancatt/basic-kitty-journaling.git"
+  },
+  "keywords": [
+    "ai",
+    "genartclub",
+    "journaling"
+  ],
+  "author": "revdancatt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/revdancatt/basic-kitty-journaling/issues"
+  },
+  "homepage": "https://github.com/revdancatt/basic-kitty-journaling#readme",
+  "devDependencies": {
+    "standard": "^17.1.0"
+  },
+  "dependencies": {
+    "openai": "^3.2.1",
+    "terminal-kit": "^3.0.0"
+  }
+}

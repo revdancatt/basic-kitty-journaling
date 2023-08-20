@@ -128,3 +128,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+/data/previousQuestionsAndAnswers.json
+/data/data.json
+/package-lock.json

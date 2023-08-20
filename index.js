@@ -156,7 +156,9 @@ const main = async () => {
     }
   )
 
-  console.log(messages)
+  // DEBUG, uncomment the next line to see the messages array
+  // console.log(messages)
+
   // Here we are going to try and grab three questions from the GPT-4 API
   const questions = []
   let escapeCounter = 0
@@ -183,7 +185,10 @@ const main = async () => {
     // Increment the escape counter
     escapeCounter++
   }
-  console.log(questions)
+
+  // DEBUG, uncomment the next line to see the questions array
+  // console.log(questions)
+
   // Add an extra general question to the questions array
   questions.push('Anything else you want to mention?')
 

@@ -106,7 +106,7 @@ const main = async () => {
   term('\n\n')
   term(displayOutput)
   term('\n\n')
-  term.cyan(`Summary written to ${path.join(dataFolder, 'summary.md')}\n`)
+  term.cyan(`Summary written to ${path.join(dataFolder, 'summary.md')}\n\n\n`)
 }
 
 main()

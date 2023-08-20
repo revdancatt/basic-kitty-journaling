@@ -56,12 +56,14 @@ const main = async () => {
     dataJSON.name = name
     fs.writeFileSync(dataJSONPath, JSON.stringify(dataJSON, null, 2))
   }
+
   // If we don't have a metaPrompt then we add the default one
   if (!dataJSON.metaPrompt) {
     dataJSON.metaPrompt = `You are a chatbot named KITTY. Your job is to help ${dataJSON.name} do daily journaling. You're going to be keeping track of the questions asked and the answers given. You are generally helpful and friendly.`
     fs.writeFileSync(dataJSONPath, JSON.stringify(dataJSON, null, 2))
     term('\n\nWe\'ve added a default meta prompt for you, you can change this in the data.json file.\n\n')
   }
+
   // If we don't have a bunch of default morning questions then we add them
   if (!dataJSON.morningQuestions) {
     // read in the defaultQuestions.txt file

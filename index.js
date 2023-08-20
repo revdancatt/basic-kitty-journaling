@@ -17,7 +17,7 @@ const path = require('path')
 const term = require('terminal-kit').terminal
 const { Configuration, OpenAIApi } = require('openai')
 
-const gpt3Completion = async (messages, model, openai, temp = 0.5, topP = 1.0, tokens = 400, freqPen = 0.0, presPen = 0.0, stop = ['USER:', 'KITTY:']) => {
+const gptCompletion = async (messages, model, openai, temp = 0.5, topP = 1.0, tokens = 400, freqPen = 0.0, presPen = 0.0, stop = ['USER:', 'KITTY:']) => {
   const response = await openai.createChatCompletion({
     model,
     messages
@@ -172,7 +172,7 @@ const main = async () => {
     } else {
       term.cyan('Getting some different questions\n')
     }
-    const output = await gpt3Completion(messages, 'gpt-4', openai)
+    const output = await gptCompletion(messages, 'gpt-4', openai)
     // Split the output into an array of lines
     const lines = output.split('\n')
     // Loop through the lines

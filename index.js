@@ -172,7 +172,16 @@ const main = async () => {
     } else {
       term.cyan('Getting some different questions\n')
     }
-    const output = await gptCompletion(messages, 'gpt-4', openai)
+    let output = null
+
+    // Lazy error/exception handling, you'd want to make this better!
+    try {
+      output = await gptCompletion(messages, 'gpt-4', openai)
+    } catch (err) {
+      console.log(err)
+      process.exit()
+    }
+
     // Split the output into an array of lines
     const lines = output.split('\n')
     // Loop through the lines

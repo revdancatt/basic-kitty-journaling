@@ -96,7 +96,15 @@ const main = async () => {
 
   term.cyan('\nGrabbing some gm tweets\n')
   const openai = new OpenAIApi(new Configuration({ apiKey: dataJSON.openai.apiKey }))
-  let output = await gptCompletion(messages, 'gpt-4', openai)
+  let output = null
+  // Lazy error/exception handling, you'd want to make this better!
+  try {
+    output = await gptCompletion(messages, 'gpt-4', openai)
+  } catch (err) {
+    term.red(`Error: ${err.message}\n`)
+    process.exit(1)
+  }
+
   // Check to make sure the response starts with a '[' and ends with a ']' after trimming off any spaces
   // remove everything before the first '[' and everything after the last ']'
   // eslint-disable-next-line no-useless-escape

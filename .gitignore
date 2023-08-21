@@ -132,3 +132,5 @@ dist
 /data/data.json
 /package-lock.json
 /data/summary.md
+data/suggestion-*.md
+data/summary-*.md

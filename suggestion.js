@@ -80,7 +80,7 @@ const main = async () => {
   messages.push(
     {
       role: 'user',
-      content: 'In your role, can you make a main suggestion for the day, followed by three quick action bullet points. Important: Please base the suggestion and points on TODAY\'s questions and answers, but use the previous Q&As to add context to any ongoing issues. Stick an affirmation on the end, because why not, and then any other thoughts you have (again taking your role into account). Thank you.\n'
+      content: 'In your role, can you make a main suggestion for the day, followed by three quick action bullet points. Important: Please base the suggestion and points on TODAY\'s questions and answers, but use the previous Q&As to add context to any ongoing issues. Stick an affirmation on the end, because why not, and then any other thoughts you have (again taking your role into account). Please format the output in markdown, and have an empty line before each new section. Thank you.\n'
     }
   )
 

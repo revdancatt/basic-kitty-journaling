@@ -99,7 +99,8 @@ const main = async () => {
     process.exit(1)
   }
 
-  fs.writeFileSync(path.join(dataFolder, 'summary.md'), output, 'utf8')
+  const filename = `summary-${new Date().toISOString().split('T')[0]}.md`
+  fs.writeFileSync(path.join(dataFolder, filename), output, 'utf8')
 
   // We want a display version of the summary so we can see it in the terminal
   // to do this we'll have displayOutput, which is the output with all '# ' replaced
@@ -107,7 +108,7 @@ const main = async () => {
   const displayOutput = output.replace(/# /g, '\n# ')
   term(displayOutput)
   term('\n\n')
-  term.cyan(`Summary written to ${path.join(dataFolder, 'summary.md')}\n\n\n`)
+  term.cyan(`Summary written to ${path.join(dataFolder, filename)}\n\n\n`)
 }
 
 main()

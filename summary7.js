@@ -80,7 +80,7 @@ const main = async () => {
   messages.push(
     {
       role: 'user',
-      content: 'Please can give a "Summary Overview" and then give more focused summaries broken down into the following areas; "Professional Development", "Wellbeing and Self-care", "Personal Exploration and Enrichment", "Creative Endeavors" and "Routine and Time Management". Important, you must use the titles as provided in the double-quotes, keep the case of them the same. Do not put any pre-amble before the start of the summaries or after, just the results I\'ve asked for. Please return the summary in Markdown format, with a single # for the titles, and a single space between the # and the title. I need it in this format so my code can process it. You don\'t need to reference the date range in the output as I will put that in the filename. Thank you.\n'
+      content: 'Please can give a "Summary Overview" and then give more focused summaries broken down into the following areas; "Professional Development", "Wellbeing and Self-care", "Personal Exploration and Enrichment", "Creative Endeavors" and "Routine and Time Management". Important, you must use the titles as provided in the double-quotes, keep the case of them the same. Do not put any pre-amble before the start of the summaries or after, just the results I\'ve asked for. Please return the summary in Markdown format, with a single # for the titles, and a single space between the # and the title. Please have an empty line before each new section.  I need it in this format so my code can process it. You don\'t need to reference the date range in the output as I will put that in the filename. Thank you.\n'
     }
   )
 

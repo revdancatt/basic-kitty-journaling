@@ -20,6 +20,28 @@ const gptCompletion = async (messages, model, openai, temp = 0.5, topP = 1.0, to
   return text
 }
 
+// Get a rough count of the tokens in what we've been sent
+const getTokenCount = async (messages) => {
+  const count = await encode(JSON.stringify(messages)).length
+  return count
+}
+
+// Work out the cost of the tokens that we are sending to gpt
+// based on 'gpt-4' costs
+const getTokenInputCost = async (messages) => {
+  const tokenCost = await getTokenCount(messages) / 1000 * 0.03
+  // We want to format this as a dollar amount
+  return `${tokenCost.toFixed(2)}`
+}
+
+// Work out the cost of the tokens we are getting back from gpt
+// based on 'gpt-4' costs
+const getTokenOutputCost = async (messages) => {
+  const tokenCost = await getTokenCount(messages) / 1000 * 0.06
+  // We want to format this as a dollar amount
+  return `${tokenCost.toFixed(2)}`
+}
+
 const main = async () => {
   // Check for a data folder and if it doesn't exist create it
   const dataFolder = path.join(__dirname, 'data')
@@ -87,13 +109,15 @@ const main = async () => {
   // DEBUG, uncomment the next line to see the messages array
   // console.log(messages)
 
-  const tokenCount = encode(JSON.stringify(messages)).length
-  term.cyan('Making some suggestions, please wait. (').yellow(`~${tokenCount} tokens`).cyan(')\n')
+  term.cyan('Making some suggestions, please wait. (').yellow(`${await getTokenCount(messages)} tokens/$${await getTokenInputCost(messages)}`).cyan(')\n')
   const openai = new OpenAIApi(new Configuration({ apiKey: dataJSON.openai.apiKey }))
   let output = null
   // Lazy error/exception handling, you'd want to make this better!
   try {
+    const startTime = new Date().getTime()
     output = await gptCompletion(messages, 'gpt-4', openai)
+    const durationInSeconds = Math.floor((new Date().getTime() - startTime) / 1000)
+    term.cyan('Response: ').yellow(`${await getTokenCount(output)} tokens/$${await getTokenOutputCost(output)} ${durationInSeconds}s\n`)
   } catch (err) {
     term.red('Error: ', err)
     process.exit(1)

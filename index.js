@@ -220,6 +220,7 @@ const main = async () => {
 
   // DEBUG, uncomment the next line to see the messages array
   // console.log(messages)
+  // process.exit()
 
   // Here we are going to try and grab three questions from the GPT-4 API
   const questions = []

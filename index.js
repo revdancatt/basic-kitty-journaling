@@ -66,7 +66,7 @@ const main = async () => {
     term('\nPlease enter your openai API key, you must be able to use the \'gpt-4\' model.')
     term('\nYou can get your API key from https://beta.openai.com/account/api-keys\n')
     term('\nAPI Key: ')
-    const apiKey = await term.inputField({}).promise
+    const apiKey = await term.inputField({echoChar: '*'}).promise
     dataJSON.openai = { apiKey }
     fs.writeFileSync(dataJSONPath, JSON.stringify(dataJSON, null, 2))
   }

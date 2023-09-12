@@ -165,9 +165,9 @@ const main = async () => {
   // Loop through the tweets and send them to terminal
   term.cyan('\n-------------------------\n')
   for (const tweet of correctLengthTweets) {
-    term.white(`\n${tweet}\n`)
+    term.white(`${tweet}\n`)
     term.yellow(`(${tweet.length} characters)\n`)
-    term.cyan('\n-------------------------\n')
+    term.cyan('-------------------------\n')
   }
 
   // TODO: Add the bit to ask the user which one they want to tweet and then tweet it

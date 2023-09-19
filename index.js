@@ -66,7 +66,7 @@ const main = async () => {
     term('\nPlease enter your openai API key, you must be able to use the \'gpt-4\' model.')
     term('\nYou can get your API key from https://beta.openai.com/account/api-keys\n')
     term('\nAPI Key: ')
-    const apiKey = await term.inputField({echoChar: '*'}).promise
+    const apiKey = await term.inputField({ echoChar: '*' }).promise
     dataJSON.openai = { apiKey }
     fs.writeFileSync(dataJSONPath, JSON.stringify(dataJSON, null, 2))
   }
@@ -146,7 +146,7 @@ const main = async () => {
   const days = 5
   const lastFiveDates = []
   let pastDatesNewToOld = []
-  if (questionsAndAnswers.dateMap) pastDatesNewToOld = questionsAndAnswers.dateMap.reverse()
+  if (questionsAndAnswers.dateMap) pastDatesNewToOld = JSON.parse(JSON.stringify(questionsAndAnswers.dateMap)).reverse()
 
   // Now loop through those dates so we can grab the questions and answers from the answers node
   for (let i = 0; i < pastDatesNewToOld.length; i++) {

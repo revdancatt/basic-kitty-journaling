@@ -8,15 +8,15 @@ For this to work you should have already run index.js to create the data files.
 const fs = require('fs')
 const path = require('path')
 const term = require('terminal-kit').terminal
-const { Configuration, OpenAIApi } = require('openai')
+const OpenAI = require('openai')
 const { encode } = require('gpt-3-encoder')
 
 const gptCompletion = async (messages, model, openai, temp = 0.5, topP = 1.0, tokens = 400, freqPen = 0.0, presPen = 0.0, stop = ['USER:', 'KITTY:']) => {
-  const response = await openai.createChatCompletion({
+  const response = await openai.chat.completions.create({
     model,
     messages
   })
-  const text = response.data.choices[0].message.content.trim().replace(/[\r\n]+/g, '\n').replace(/[\t ]+/g, ' ')
+  const text = response.choices[0].message.content.trim().replace(/[\r\n]+/g, '\n').replace(/[\t ]+/g, ' ')
   return text
 }
 
@@ -121,7 +121,7 @@ const main = async () => {
   // console.log(messages)
 
   term.cyan('\nGrabbing some gm tweets, please wait. (').yellow(`${await getTokenCount(messages)} tokens/$${await getTokenInputCost(messages)}`).cyan(')\n')
-  const openai = new OpenAIApi(new Configuration({ apiKey: dataJSON.openai.apiKey }))
+  const openai = new OpenAI({ apiKey: dataJSON.openai.apiKey })
   let output = null
   // Lazy error/exception handling, you'd want to make this better!
   try {

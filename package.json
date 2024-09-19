@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "gpt-3-encoder": "^1.1.4",
-    "openai": "^3.2.1",
+    "openai": "^4.62.1",
     "terminal-kit": "^3.0.0"
   }
 }
